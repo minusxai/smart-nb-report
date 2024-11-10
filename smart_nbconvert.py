@@ -8,14 +8,14 @@ import re
 
 from prompt import SYSTEM_PROMPT
 
-def get_oai_client():
+def get_oai_client() -> OpenAI:
   key = os.getenv("OPENAI_API_KEY", None)
   if key is None:
     raise ValueError("OPENAI_API_KEY must be set")
   oai_client = OpenAI(api_key=key)
   return oai_client
 
-def get_notebook_state(notebook):
+def get_notebook_state(notebook: str) -> dict:
   with open(notebook, "r") as f:
     notebook = nbformat.read(f, as_version=4)
   print(f"Loaded notebook: {len(notebook.cells)} total cells")
@@ -47,7 +47,7 @@ def get_notebook_state(notebook):
       processed_cells.append(temp_cell)
   return {'cells': processed_cells, 'images': images}
 
-def get_chat_messages(notebook_state, instructions):
+def get_chat_messages(notebook_state: dict, instructions: str) -> list:
   content = []
   if instructions != '':
     content.append({"type": "text", "text": f"Goal for the report/project: {instructions}"})
@@ -65,7 +65,7 @@ def get_chat_messages(notebook_state, instructions):
   ]
   return messages
 
-def replace_image_links(report_content, images):
+def replace_image_links(report_content: str, images: list) -> str:
   def replace_link(match):
     idx = int(match.group(1)) - 1
     return f'\n ![image_{idx+1}]({images[idx]["image_url"]["url"]}) \n'
