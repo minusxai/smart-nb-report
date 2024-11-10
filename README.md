@@ -1,2 +1,2 @@
-# smart-nb-report
+# smart-nbconvert
 Create an automated report from a notebook
