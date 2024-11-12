@@ -1,5 +1,5 @@
 # smart-nbconvert
-smart-nbconvert is a tool for automatically generating reports from Jupyter Notebooks. This python script processes notebooks, extracts key content, and converts it into a structured markdown report. It also handles inline images, etc.
+smart-nbconvert is a tool for automatically generating detailed reports from Jupyter Notebooks with the help of LLMs. This python script processes the notebook, notebook, extracts key content, and converts it into a structured markdown report. It also handles inline images, etc.
 
 
 ## Installation
@@ -22,6 +22,9 @@ python smart_nbconvert.py \
   --instructions "How to reduce latency" \
   --output report.md
 ```
+
+## Example input/output
+![example](./examples/example.png)
 
 ## License
 MIT License
